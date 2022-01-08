@@ -79,4 +79,41 @@ The following table shows the values that must be entered in each column dependi
 |  Gas Turbine | Status | Type | Units Number | *MTTF* [Hours] | *MTTR* [Hours] | Installation Cost per Unit [€] | Operating Cost per Unit [€] | *P<sub>nom</sub>* [W] |  *P<sub>min</sub>* [W]  |           |            |                 |                  |             |
 |     Other    | Status | Type | Units Number | *MTTF* [Hours] | *MTTR* [Hours] | Installation Cost per Unit [€] | Operating Cost per Unit [€] | *P<sub>nom</sub>* [W] |  *P<sub>min</sub>* [W]  |           |            |                 |                  |             |
 
-In the "Status" section, it must be indicated whether that generator should be considered to carry out the simulation. It will take a value of *0* if it is inactive, or *1* if it is operational.
+In the **Status** section, it must be indicated whether that generator should be considered to carry out the simulation. It will take a value of *0* if it is inactive, or *1* if it is operational.
+
+Under the **Type** section, we shall indicate the type of generating system in question:
+- Value *1* for **wind turbines**.
+- Value *2* for **solar panels**.
+- Value *3* for **fuel cells**.
+- Value *4* for **gas microturbines**.
+- Value *5* for another type of **conventional generation** (e.g. diesel generators).
+
+Depending on the type of generator added, a certain number of columns will be used, according to the arrangement of the previous table. Each row represents a certain distinct generation group, and you can add as many as you want.
+
+![Typical genConfig.csv file view from the Matlab window](https://user-images.githubusercontent.com/94860520/148660303-a19248a4-741c-455f-a93b-b48716e935d6.png)
+
+## Running the simulation
+
+Once the CSV files have been correctly edited, we can start the simulation.
+
+To do this, go to the Matlab current folder, look for the `modelo.m` file, right-click on it and select *Run* from the drop-down menu.
+
+![Data entered via console](https://user-images.githubusercontent.com/94860520/148660665-7b8f6317-fa99-40b5-a3b8-6797bd1a46e9.png)
+
+The model will request the introduction of two more necessary data, which must be entered through the Matlab command window.
+
+First, we shall indicate the latitude of the location of our building, adding as many decimal places as desired. Values between -90º and 90º will be accepted (taking the Equator as 0º). In case of entering values outside this range, an error message will appear and a new acceptable value will be requested. Once entered, it is confirmed with the `Enter` key.
+
+Next, you will be asked to indicate the occupancy profile of the building, which will take value *1* for morning hours (from 8:00 to 15:00) or value *2* for morning and afternoon split hours (from 8:00 to 13:00 and from 15:00 to 18:00). Values other than these will not be accepted. Otherwise, an error message will appear and a new acceptable value will be requested. Once entered, it is confirmed with the `Enter` key.
+
+Once these data have been entered, the model will have all the necessary indications to be able to carry out the simulation correctly.
+
+From this moment on, the Matlab command window will show the years of simulation carried out so far, as well as the tolerance achieved during that year.
+
+![Command window view during simulation](https://user-images.githubusercontent.com/94860520/148661101-63d7908b-859a-49d2-b187-1e363a8112be.png)
+
+Once the simulation is finished, the command window will indicate this by means of a message, and the `datos.mat` file will have been created in the directory, where the most important variables analyzed during the simulation will have been registered. These variables will be saved as tables, and can be easily plotted with Matlab's own PLOT tools, or exported for use in other programs.
+
+![Some of the variables registered in datos.mat](https://user-images.githubusercontent.com/94860520/148661562-bff179c1-0114-4235-b873-15a5e4f38b17.png)
+
+![Example of a graph made from Matlab itself](https://user-images.githubusercontent.com/94860520/148661396-4111b281-aad4-49ea-bfdc-5f0e14d96fbc.png)
